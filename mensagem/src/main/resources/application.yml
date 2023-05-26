@@ -1,0 +1,91 @@
+server:
+  port: 9095
+spring:
+  boot:
+    admin:
+      monitor:
+        default-retries: 5
+        retries.health: 5
+      client:
+        url: http://localhost:1111
+        username: admin
+        password: 123
+        instance:
+          #service-host-type: ip
+          #prefer-ip: true
+          service-host-type: canonical-host-name
+          metadata:
+            management:
+              port: 9096
+            user:
+              name: actuator
+              password: 123        
+  application:
+    name: "API Mensagens KelsonThony"
+  datasource:
+    url: jdbc:mysql://localhost:3306/algamensagens?createDatabaseIfNotExist=true&verifyServerCertificate=false&connectionTimeZone=UTC
+    username: root
+    password: password
+  jpa:
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+    properties:
+      "[hibernate.generate_statistics]": true
+  profiles:
+    active: 
+      - dev
+      - jpa
+
+integracao:
+  api:
+    localidades:
+      url: 'http://localhost:3000'
+      paises-path: '/paises'
+      
+management:
+  server:
+    port: 9096
+  endpoints:
+    enabled-by-default: false
+    web:
+      #base-path: "/gerenciador"
+      #path-mapping:
+        #health: "saude"
+        #metrics: "metricas"
+      exposure:
+        include: "metrics,health,info,auditevents,usuarios,loggers"
+    jmx:
+      exposure:
+        include: "*" #metrics
+  metrics:
+    enable:
+      executor: false
+  health:
+    diskspace:
+      enabled: true
+  info:
+    env:
+      enabled: true
+    java:
+      enabled: true
+  endpoint:
+    health:
+      enabled: true
+      show-details: when-authorized
+      roles: 'ACTUATOR'
+    metrics:
+      enabled: true
+    info:
+      enabled: true
+    auditevents:
+      enabled: true
+    loggers:
+      enabled: true
+
+info:
+  application:
+    nome: ${spring.application.name}
+    descricao: API de mensagens
+      
+    
