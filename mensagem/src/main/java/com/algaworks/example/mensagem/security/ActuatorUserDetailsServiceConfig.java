@@ -12,11 +12,11 @@ public class ActuatorUserDetailsServiceConfig {
 	@Bean
 	public InMemoryUserDetailsManager inMemoryUserDetailsManager(PasswordEncoder passwordEncoder) {
 		final var manager = new InMemoryUserDetailsManager();
-		final var user = User.withUsername("actuator")
+		final var usuario = User.withUsername("actuator")
 				.password(passwordEncoder.encode("123"))
 				.roles("ACTUATOR")
 				.build();
-		manager.createUser(user);
+		manager.createUser(usuario);
 		
 		return manager;
 	}

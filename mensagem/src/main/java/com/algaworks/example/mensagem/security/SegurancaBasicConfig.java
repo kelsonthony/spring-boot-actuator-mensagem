@@ -42,8 +42,8 @@ public class SegurancaBasicConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET,"/mensagens/**","/paises").permitAll()
                 .antMatchers(HttpMethod.POST, "/mensagens").hasAnyRole("CLIENTE","ADMIN")
-                .antMatchers(HttpMethod.GET, "/gerenciador/saude", "/gerenciador/info").permitAll()
-                .antMatchers("/gerenciador/**").hasRole("ACTUATOR")
+                .antMatchers(HttpMethod.GET, "/actuator/health", "/actuator/info").permitAll()
+                .antMatchers("/actuator/**").hasRole("ACTUATOR")
             .and()
                 .csrf().disable()
                 .httpBasic();

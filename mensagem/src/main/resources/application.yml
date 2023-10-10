@@ -1,22 +1,15 @@
-server:
-  port: 9095
 spring:
   boot:
     admin:
-      monitor:
-        default-retries: 5
-        retries.health: 5
       client:
         url: http://localhost:1111
         username: admin
         password: 123
         instance:
-          #service-host-type: ip
-          #prefer-ip: true
-          service-host-type: canonical-host-name
+          prefer-ip: true
           metadata:
             management:
-              port: 9096
+              port: 8081
             user:
               name: actuator
               password: 123        
@@ -45,19 +38,15 @@ integracao:
       
 management:
   server:
-    port: 9096
+    port: 8081
   endpoints:
     enabled-by-default: false
     web:
-      #base-path: "/gerenciador"
-      #path-mapping:
-        #health: "saude"
-        #metrics: "metricas"
       exposure:
         include: "metrics,health,info,auditevents,usuarios,loggers"
     jmx:
       exposure:
-        include: "*" #metrics
+        include: "metrics"
   metrics:
     enable:
       executor: false
