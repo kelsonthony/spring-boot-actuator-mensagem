@@ -2,7 +2,7 @@ spring:
   boot:
     admin:
       client:
-        url: http://localhost:1111
+        url: http://localhost:9096
         username: admin
         password: 123
         instance:
@@ -12,11 +12,11 @@ spring:
               port: 8081
             user:
               name: actuator
-              password: 123        
+              password: 123
   application:
-    name: "API Mensagens KelsonThony"
+    name: "API de Mensagens"
   datasource:
-    url: jdbc:mysql://localhost:3306/algamensagens?createDatabaseIfNotExist=true&verifyServerCertificate=false&connectionTimeZone=UTC
+    url: jdbc:mysql://localhost:3306/demomensagens?createDatabaseIfNotExist=true&verifyServerCertificate=false&connectionTimeZone=UTC
     username: root
     password: password
   jpa:
@@ -30,10 +30,13 @@ spring:
       - dev
       - jpa
 
+server:
+  port: 8080
+
 integracao:
   api:
     localidades:
-      url: 'http://localhost:3000'
+      url: 'http://localhost:3001'
       paises-path: '/paises'
       
 management:
@@ -42,6 +45,10 @@ management:
   endpoints:
     enabled-by-default: false
     web:
+      #base-path: "/gerenciador"
+      #path-mapping:
+        #health: "saude"
+        #metrics: "metricas"
       exposure:
         include: "metrics,health,info,auditevents,usuarios,loggers"
     jmx:
@@ -49,7 +56,7 @@ management:
         include: "metrics"
   metrics:
     enable:
-      executor: false
+      executor.active: false # para deativar uma metrica
   health:
     diskspace:
       enabled: true
@@ -75,6 +82,6 @@ management:
 info:
   application:
     nome: ${spring.application.name}
-    descricao: API de mensagens
+    descricao: API de mensagens com simples demonstração de uso de Spring Boot
       
     

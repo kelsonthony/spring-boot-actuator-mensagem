@@ -9,8 +9,8 @@
 		<version>2.6.2</version>
 		<relativePath />
 	</parent>
-	<groupId>com.algaworks.example</groupId>
-	<artifactId>algaworks-actuator-mensagem</artifactId>
+	<groupId>com.example</groupId>
+	<artifactId>demo-actuator-mensagem</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>API Avaliação</name>
 	<description>Spring Boot Demo - Mensagem API</description>
